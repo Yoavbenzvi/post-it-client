@@ -3,7 +3,6 @@ import history from '../history';
 import { Router, Route } from 'react-router-dom';
 import Home from './Home';
 import Profile from './Profile';
-import Write from './Write';
 import Search from './Search';
 import Welcome from './Welcome';
 
@@ -19,7 +18,6 @@ const App = () => {
 					<Route path='/main/home' component={Home}/>
 					<Route path='/main/profile' component={Profile}/>
 					<Route path='/main/search' component={Search}/>
-					<Route path='/main/post' component={Write}/>
 				</div>
 			</Router>
 		</div>

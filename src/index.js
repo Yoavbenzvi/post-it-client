@@ -4,14 +4,15 @@ import * as serviceWorker from './serviceWorker';
 import './assets/main.css';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
+import App from './containers/App';
 import reducers from './reducers';
 
-import App from './containers/App';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(
-   applyMiddleware()
-));
+const store = createStore(
+	reducers, 
+	composeEnhancers(applyMiddleware())
+);
 
 ReactDOM.render(
 	<Provider store={store}>

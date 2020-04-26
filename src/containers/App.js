@@ -1,6 +1,6 @@
 import React from 'react';
 import history from '../history';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import Home from './Home';
 import Profile from './Profile';
 import Write from './Write';
@@ -13,8 +13,13 @@ const App = () => {
 	return (
 		<div>
 			<Router history={history}>
-				<div>
+				<div className='flex'>
+					<Route path='/' exact component={Welcome}/>
 					<Route path='/main' component={Navbar}/>
+					<Route path='/main/home' component={Home}/>
+					<Route path='/main/profile' component={Profile}/>
+					<Route path='/main/search' component={Search}/>
+					<Route path='/main/post' component={Write}/>
 				</div>
 			</Router>
 		</div>

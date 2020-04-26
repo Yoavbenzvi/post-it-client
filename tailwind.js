@@ -16,6 +16,14 @@ module.exports = {
       black: '#000',
       white: '#fff',
 
+      cus: {
+        1: '#deeaf6',
+        2: '#b3c6e4',
+        3: '#687d92',
+        4: '#252f48',
+        5: '#f6376b'
+      },
+
       gray: {
         100: '#f7fafc',
         200: '#edf2f7',
@@ -195,6 +203,7 @@ module.exports = {
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
       none: 'none',
+      'cos1': '-12px 0px 116px 3px rgba(0,0,0,0.73)',
     },
     container: {},
     cursor: {

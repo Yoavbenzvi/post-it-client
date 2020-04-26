@@ -1,6 +1,6 @@
 import React from 'react';
 import history from '../history';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Profile from './Profile';
 import Search from './Search';
@@ -13,11 +13,13 @@ const App = () => {
 		<div>
 			<Router history={history}>
 				<div className='flex'>
-					<Route path='/' exact component={Welcome}/>
-					<Route path='/main' component={Navbar}/>
-					<Route path='/main/home' component={Home}/>
-					<Route path='/main/profile' component={Profile}/>
-					<Route path='/main/search' component={Search}/>
+					<Switch>
+						<Route path='/main' component={Navbar}/>
+						<Route path='/main/home' component={Home}/>
+						<Route path='/main/profile/:id' component={Profile}/>
+						<Route path='/main/search' component={Search}/>
+						<Route path='/' component={Welcome}/>
+					</Switch>
 				</div>
 			</Router>
 		</div>

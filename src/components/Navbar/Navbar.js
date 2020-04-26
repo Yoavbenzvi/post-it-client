@@ -1,7 +1,8 @@
 import React from 'react';
 import NavIcon from './NavIcon';
+import { signOut } from '../../actions';
 
-const Navbar = () => {
+const Navbar = ({ signOut }) => {
 	return(
 		<div className='p-1 h-screen inline-flex flex-col'>
 			<div className='flex flex-col'>
@@ -22,12 +23,19 @@ const Navbar = () => {
 				/>
 			</div>
 			<div className='h-screen flex items-end'>
-				<div className='p-2 cursor-pointer hover:bg-red-100'>
-					Logout
-				</div>
+				<NavIcon
+					onClick={() => signOut()}
+					className='p-2 cursor-pointer hover:bg-red-100'
+					path='/'
+					content='Logout'
+				/>
 			</div>
 		</div>
 	);
+}
+
+const mapDispatchToProps = {
+	signOut
 }
 
 export default Navbar;

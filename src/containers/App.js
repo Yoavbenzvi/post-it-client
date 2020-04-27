@@ -13,13 +13,12 @@ const App = () => {
 		<div>
 			<Router history={history}>
 				<div className='flex'>
-					<Switch>
+						<Route path='/' exact component={Welcome}/>		
+						<Route path='/register' exact component={Welcome}/>
 						<Route path='/main' component={Navbar}/>
 						<Route path='/main/home' component={Home}/>
 						<Route path='/main/profile/:id' component={Profile}/>
 						<Route path='/main/search' component={Search}/>
-						<Route path='/' component={Welcome}/>
-					</Switch>
 				</div>
 			</Router>
 		</div>

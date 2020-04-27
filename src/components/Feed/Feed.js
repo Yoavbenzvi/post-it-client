@@ -1,24 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Post from '../Post/Post';
 
 class Feed extends React.Component {
 	//props: user
 
 	render() {
 		return(
-			<div>
-				<div className='text-center p-2 m-2'>
-					Post
-				</div>
-				<div className='text-center p-2 m-2'>
-					Post
-				</div>
-				<div className='text-center p-2 m-2'>
-					Post
-				</div>
-				<div className='text-center p-2 m-2'>
-					Post
-				</div>
+			<div className='m-2 border-t container'>
+				<Post />
+				<Post />
+				<Post />
+				<Post />
+				<Post />
+				<Post />
 			</div>
 		)
 	}

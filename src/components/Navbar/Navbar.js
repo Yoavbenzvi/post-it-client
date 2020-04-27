@@ -13,7 +13,7 @@ const Navbar = ({ signOut }) => {
 				/>
 				<NavIcon 
 					css='p-2 cursor-pointer hover:bg-red-100'
-					path='/main/profile'
+					path='/main/profile/id'
 					content='Profile'
 				/>
 				<NavIcon 

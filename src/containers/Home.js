@@ -11,13 +11,13 @@ const Home = () => {
 				{...input}
 				className='border border-black' 
 				type='text' 
-				placeholder='search'/>
+				placeholder='write'/>
 		)
 	}
 
 	return(
-		<div className='w-screen flex justify-center p-2'>
-			<div>
+		<div className='container flex justify-center p-2'>
+			<div className='container flex flex-col'>
 				<Field name='content' component={renderInputField}/>
 				<Feed feed='home'/>
 			</div>

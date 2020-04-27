@@ -1,20 +1,14 @@
 import React from 'react';
+import UserCard from './UserCard';
 
 const SearchResults = () => {
 	return(
-		<div>
-			<div className='text-center p-2 m-2'>
-				result
-			</div>
-			<div className='text-center p-2 m-2'>
-				result
-			</div>
-			<div className='text-center p-2 m-2'>
-				result
-			</div>
-			<div className='text-center p-2 m-2'>
-				result
-			</div>
+		<div className=''>
+			<UserCard />
+			<UserCard />
+			<UserCard />
+			<UserCard />
+			<UserCard />
 		</div>
 	)
 }

@@ -16,8 +16,8 @@ const Home = () => {
 	}
 
 	return(
-		<div className='container flex justify-center p-2'>
-			<div className='container flex flex-col'>
+		<div className='w-full flex justify-center'>
+			<div className='w-full flex flex-col'>
 				<Field name='content' component={renderInputField}/>
 				<Feed feed='home'/>
 			</div>

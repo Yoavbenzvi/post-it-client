@@ -3,9 +3,10 @@ import { Field, reduxForm } from 'redux-form';
 import SearchResults from '../components/SearchResults/SearchResults';
 
 
-class Search extends React.Component {
 
-	renderInputField = ({ input }) => {
+const Search = () => {
+
+	const renderInputField = ({ input }) => {
 		return(
 			<input 
 				{...input}
@@ -15,22 +16,16 @@ class Search extends React.Component {
 		)
 	}
 
-	render() {
-
-		//to remove:
-		console.log('search component props:',this.props)
-
-		return(
-			<div className='w-screen flex justify-center p-2'>
-				<div>
-					<form>
-						<Field name='searchTerm' component={this.renderInputField}/>
-					</form>
-					<SearchResults />
-				</div>
+	return(
+		<div className='w-screen flex justify-center p-2'>
+			<div>
+				<form>
+					<Field name='searchTerm' component={renderInputField}/>
+				</form>
+				<SearchResults />
 			</div>
-		)
-	}
+		</div>
+	)
 }
 
 export default reduxForm({

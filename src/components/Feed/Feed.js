@@ -7,7 +7,7 @@ class Feed extends React.Component {
 
 	render() {
 		return(
-			<div className='m-2 border-t container'>
+			<div className='w-full'>
 				<Post />
 				<Post />
 				<Post />
@@ -25,8 +25,8 @@ const mapStateToProps = (state) => ({
 	viewedUser: state.viewedUser.data
 })
 
-const mapDispatchToProps = {
-	//add an async action here
-}
+// const mapDispatchToProps = {
+// 	//add an async action here
+// }
 
-export default connect()(Feed);
+export default connect(mapStateToProps)(Feed);

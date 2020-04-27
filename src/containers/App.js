@@ -1,6 +1,6 @@
 import React from 'react';
 import history from '../history';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import Home from './Home';
 import Profile from './Profile';
 import Search from './Search';

@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProfileDetails = () => {
 	return(
-		<div className='p-2'>
+		<div>
 			ProfileDetails
 		</div>
 	)

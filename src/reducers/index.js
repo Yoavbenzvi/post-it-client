@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import userInfo from './signInOutReducer';
-import viewedUser from './viewedUserReducer';
+import currentUserReducer from './signInOutReducer';
+import viewedUserReducer from './viewedUserReducer';
+import feedReducer from './feedReducer';
 
 export default combineReducers({
-	form: formReducer,
-	currentUser: userInfo,
-	viewedUser
+	formReducer,
+	currentUserReducer,
+	viewedUserReducer, 
+	feedReducer,
 })

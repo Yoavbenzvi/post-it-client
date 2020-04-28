@@ -33,7 +33,7 @@ const Home = () => {
 		<div className='w-full flex justify-center p-2'>
 			<div className='w-full flex flex-col'>
 				<Field name='content' component={renderInputField}/>
-				<Feed feed='home'/>
+				<Feed/>
 			</div>
 		</div>
 	)
@@ -44,7 +44,7 @@ const WrappedHome = reduxForm({
 })(Home);
 
 const mapStateToProps = (state) => ({
-	currentUser: state.currentUser.data
+	currentUser: state.currentUserReducer.data
 })
 
 export default connect(mapStateToProps)(WrappedHome)

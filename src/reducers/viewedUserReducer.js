@@ -1,7 +1,7 @@
 import { SET_VIEWED_USER } from '../actions/constants';
 
 const initialState = {
-	viewedUser: null
+	data: null
 }
 
 export default (state = initialState, { type, payload }) => {

@@ -1,32 +1,45 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import history from '../../history';
+import { getUserPosts, getAllPosts } from '../../actions';
 import Post from '../Post/Post';
 
 class Feed extends React.Component {
-	//props: user
+
+	componentDidMount() {
+		history.location.pathname === '/main/home' ?
+		this.props.getAllPosts()
+		:
+		this.props.getUserPosts()
+	}
+
+	renderPosts = () => {
+		return this.props.feed.map(post => {
+			//to put in actuall Post with all props
+			return <Post />
+		})
+	}
 
 	render() {
 		return(
 			<div className='w-full'>
-				<Post />
-				<Post />
-				<Post />
-				<Post />
-				<Post />
-				<Post />
+				{this.renderPosts()}
 			</div>
 		)
 	}
+	
 }
 
 const mapStateToProps = (state) => ({
 	//need to get only email
-	currentUser: state.currentUser.data,
-	viewedUser: state.viewedUser.data
+	currentUser: state.currentUserReducer.data,
+	viewedUser: state.viewedUserReducer.data,
+	feed: state.feedReducer.feed
 })
 
-// const mapDispatchToProps = {
-// 	//add an async action here
-// }
+const mapDispatchToProps = {
+	getAllPosts,
+	getUserPosts
+}
 
-export default connect(mapStateToProps)(Feed);
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);

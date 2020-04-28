@@ -18,7 +18,7 @@ import Feed from '../components/Feed/Feed';
 				<div className='flex justify-center'>
 					<button 
 						className='m-2 w-1/6 rounded shadow-md shadow bg-blue-500 text-white hover:bg-blue-400'
-						type='submit  '
+						type=''
 					>
 						Post
 					</button>

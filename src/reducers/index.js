@@ -5,7 +5,7 @@ import viewedUserReducer from './viewedUserReducer';
 import feedReducer from './feedReducer';
 
 export default combineReducers({
-	formReducer,
+	form: formReducer,
 	currentUserReducer,
 	viewedUserReducer, 
 	feedReducer,

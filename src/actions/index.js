@@ -17,10 +17,19 @@ export const signOut = () => ({
 	type: SIGN_OUT
 });
 
-export const setViewedUser = (payload) => ({
-	type: SET_VIEWED_USER,
-	payload
-});
+export const setViewedUser = (email) => async (dispatch) => {
+
+	try {
+		const response = await baseURL.get('/users');
+		// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
+		const user = await response.data.find(user => user.email === email)
+		//
+		dispatch({type: SET_VIEWED_USER, payload: user})
+	} catch(err) {
+		//do something here
+	}
+
+};
 
 export const getAllPosts = () => async (dispatch) => {										
 
@@ -40,7 +49,7 @@ export const getUserPosts = (email) => async (dispatch) => {
 		// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
 		const filteredResponse = response.data.filter(post => post.email === email)
 		//
-		dispatch({type: GET_ALL_POSTS, payload: filteredResponse /*should be response.data*/})
+		dispatch({type: GET_USER_POSTS, payload: filteredResponse /*should be response.data*/})
 	} catch(err) {
 		//do something with error
 	}

@@ -5,7 +5,6 @@ import Spinner from '../components/Spinner/Spinner'
 import ProfileDetails from '../components/ProfileDetails/ProfileDetails';
 
 const Profile = ({ viewedUser }) => {
-	console.log(viewedUser === true)
 
 	if(!viewedUser) {
 		return <Spinner />

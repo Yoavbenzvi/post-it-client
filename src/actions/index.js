@@ -1,4 +1,5 @@
 import baseURL from '../api/axios';
+import history from '../history';
 
 import {
 	SIGN_IN,
@@ -25,6 +26,9 @@ export const setViewedUser = (email) => async (dispatch) => {
 		const user = await response.data.find(user => user.email === email)
 		//
 		dispatch({type: SET_VIEWED_USER, payload: user})
+
+		history.push(`/main/profile/${user.id}`)
+
 	} catch(err) {
 		//do something here
 	}

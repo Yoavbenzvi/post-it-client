@@ -7,11 +7,10 @@ import Post from '../Post/Post';
 class Feed extends React.Component {
 
 	componentDidMount() {
-		if(history.location.pathname === '/main/home') {
+		history.location.pathname === '/main/home' ?
 			this.props.getAllPosts()
-		} else {
-			getUserPosts(this.props.viewedUser.email)
-		}
+		:
+			this.props.getUserPosts(this.props.viewedUser.email)
 	}
 
 	renderPosts = () => {

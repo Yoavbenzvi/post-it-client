@@ -5,14 +5,16 @@ import Home from './Home';
 import Profile from './Profile';
 import Search from './Search';
 import Welcome from './Welcome';
+import Navbar from '../components/Navbar/Navbar';
 
-import Navbar from '../components/Navbar/Navbar'
+import Spinner from '../components/Spinner/Spinner'
 
 const App = () => {
 	return (
 		<div>
 			<Router history={history}>
 				<div className='flex'>
+						<Route path='/spinner' exact component={Spinner} />
 						<Route path='/' exact component={Welcome}/>		
 						<Route path='/register' exact component={Welcome}/>
 						<Route path='/main' component={Navbar}/>

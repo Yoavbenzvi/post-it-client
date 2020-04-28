@@ -1,14 +1,21 @@
 import React from 'react';
 import UserCard from './UserCard';
 
-const SearchResults = () => {
+const SearchResults = ({ results }) => {
+
+	const renderedResults = () => {
+		return results.map(user => (
+			<UserCard
+				key={user.id} 
+				id={user.id}
+				email={user.email}
+				name={user.name}
+			/>))
+	}
+
 	return(
 		<div className=''>
-			<UserCard />
-			<UserCard />
-			<UserCard />
-			<UserCard />
-			<UserCard />
+			{renderedResults()}
 		</div>
 	)
 }

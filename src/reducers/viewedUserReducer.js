@@ -1,7 +1,15 @@
 import { SET_VIEWED_USER } from '../actions/constants';
 
+const fakeInitialState = {	
+	"id": 1,
+	"email": "dean@gmail.com",
+	"name": "Dean",
+	"joined": "20.04.2019",
+	"posts": [1, 2]
+}
+
 const initialState = {
-	data: null
+	viewedUser: fakeInitialState //SHOULD BE NULL!!!
 }
 
 export default (state = initialState, { type, payload }) => {

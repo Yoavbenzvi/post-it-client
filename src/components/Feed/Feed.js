@@ -10,13 +10,20 @@ class Feed extends React.Component {
 		history.location.pathname === '/main/home' ?
 		this.props.getAllPosts()
 		:
-		this.props.getUserPosts()
+		this.props.getUserPosts(this.props.viewedUser.email)
 	}
 
 	renderPosts = () => {
 		return this.props.feed.map(post => {
 			//to put in actuall Post with all props
-			return <Post key={/*should be post.id*/ Math.random()}/>
+			return <Post 
+				key={post.id}
+				name={post.name}
+				created={post.created}
+				content={post.content}
+				likes={post.likes}
+				email={post.email}
+			/>
 		})
 	}
 
@@ -33,7 +40,7 @@ class Feed extends React.Component {
 const mapStateToProps = (state) => ({
 	//need to get only email
 	currentUser: state.currentUserReducer.data,
-	viewedUser: state.viewedUserReducer.data,
+	viewedUser: state.viewedUserReducer.viewedUser,
 	feed: state.feedReducer.feed
 })
 

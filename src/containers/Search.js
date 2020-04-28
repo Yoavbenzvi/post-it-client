@@ -2,6 +2,14 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import SearchResults from '../components/SearchResults/SearchResults';
 
+	// try {
+	// 	const response = await baseURL.get('/users')
+	// 	// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
+	// 	const filteredResponse = response.data.filter(user => user.name.toLowerCase().includes(searchterm.toLowerCase))
+	// 	//
+	// } catch(err) {
+	// 	//do something with error
+	// }
 
 const renderInputField = ({ input }) => {
 	return(
@@ -22,18 +30,28 @@ const renderInputField = ({ input }) => {
 	)
 }
 
-const Search = () => {
+//TO DELETE
+const tempUser = [{	
+	"id": 1,
+	"email": "dean@gmail.com",
+	"name": "Dean",
+	"joined": "20.04.2019",
+	"posts": [1, 2]
+}]
 
-	return(
-		<div className='w-full flex justify-center p-2'>
-			<div>
-				<form>
-					<Field name='searchTerm' component={renderInputField}/>
-				</form>
-				<SearchResults/>
+class Search extends React.Component {
+	render() {	
+		return(
+			<div className='w-full flex justify-center p-2'>
+				<div>
+					<form>
+						<Field name='searchTerm' component={renderInputField}/>
+					</form>
+					<SearchResults results={tempUser}/>
+				</div>
 			</div>
-		</div>
-	)
+		)
+	}
 }
 
 export default reduxForm({

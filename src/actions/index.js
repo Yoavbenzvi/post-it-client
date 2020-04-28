@@ -5,7 +5,7 @@ import {
 	SIGN_OUT,
 	SET_VIEWED_USER,
 	GET_USER_POSTS,
-	GET_ALL_POSTS
+	GET_ALL_POSTS,
 } from './constants';
 
 export const signIn = (payload) => ({
@@ -25,7 +25,7 @@ export const setViewedUser = (payload) => ({
 export const getAllPosts = () => async (dispatch) => {										
 
 	try {
-		const response = await baseURL.get('/posts')
+		const response = await baseURL.get('/posts' /* will probably be a different endpoint */)
 		dispatch({type: GET_ALL_POSTS, payload: response.data})
 	} catch(err) {
 		//do something with error
@@ -36,7 +36,7 @@ export const getAllPosts = () => async (dispatch) => {
 export const getUserPosts = (email) => async (dispatch) => {
 
 	try {
-		const response = await baseURL.get('/posts');
+		const response = await baseURL.get('/posts' /* will probably be a different endpoint */);
 		// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
 		const filteredResponse = response.data.filter(post => post.email === email)
 		//
@@ -45,5 +45,7 @@ export const getUserPosts = (email) => async (dispatch) => {
 		//do something with error
 	}
 }
+
+
 
 

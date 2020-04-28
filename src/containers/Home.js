@@ -11,7 +11,7 @@ import Feed from '../components/Feed/Feed';
 						{...input}
 						rows='4'
 						className='w-1/2 self-center border-2 border-md border-gray-600 bg-white text-center h-10 px-5 pr-16  text-sm focus:outline-none' 
-						type='textarea' 
+						type='text' 
 						placeholder="Write a new post..." 
 					/>
 				</div>

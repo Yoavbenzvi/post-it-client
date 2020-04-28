@@ -16,7 +16,7 @@ class Feed extends React.Component {
 	renderPosts = () => {
 		return this.props.feed.map(post => {
 			//to put in actuall Post with all props
-			return <Post />
+			return <Post key={/*should be post.id*/ Math.random()}/>
 		})
 	}
 

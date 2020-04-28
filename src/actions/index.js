@@ -1,3 +1,5 @@
+import baseURL from '../api/axios';
+
 import {
 	SIGN_IN,
 	SIGN_OUT,
@@ -20,16 +22,28 @@ export const setViewedUser = (payload) => ({
 	payload
 });
 
-export const getAllPosts = () => async (dispatch) => {
-	//to add a fetch function
+export const getAllPosts = () => async (dispatch) => {										
 
-	dispatch({type: GET_ALL_POSTS, payload: ['all the posts']})
+	try {
+		const response = await baseURL.get('/posts')
+		dispatch({type: GET_ALL_POSTS, payload: response.data})
+	} catch(err) {
+		//do something with error
+	}
+
 }
 
 export const getUserPosts = (email) => async (dispatch) => {
-	//to add a fetch function
 
-	dispatch({type: GET_USER_POSTS, payload: ['user posts']})
+	try {
+		const response = await baseURL.get('/posts');
+		// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
+		const filteredResponse = response.data.filter(post => post.email === email)
+		//
+		dispatch({type: GET_ALL_POSTS, payload: filteredResponse /*should be response.data*/})
+	} catch(err) {
+		//do something with error
+	}
 }
 
 

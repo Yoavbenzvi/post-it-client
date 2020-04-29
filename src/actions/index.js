@@ -24,7 +24,13 @@ export const setViewedUser = (email) => async (dispatch) => {
 		const response = await baseURL.get('/users');
 		// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
 		const user = await response.data.find(user => user.email === email)
+		//	try {
+		const secondResponse = await baseURL.get('/posts' /* will probably be a different endpoint */);
+		// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
+		const filteredResponse = secondResponse.data.filter(post => post.email === email)
 		//
+		dispatch({type: GET_USER_POSTS, payload: filteredResponse /*should be response.data*/})
+	
 		dispatch({type: SET_VIEWED_USER, payload: user})
 
 		history.push(`/main/profile/${user.id}`)
@@ -46,18 +52,18 @@ export const getAllPosts = () => async (dispatch) => {
 
 }
 
-export const getUserPosts = (email) => async (dispatch) => {
+// export const getUserPosts = (email) => async (dispatch) => {
 
-	try {
-		const response = await baseURL.get('/posts' /* will probably be a different endpoint */);
-		// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
-		const filteredResponse = response.data.filter(post => post.email === email)
-		//
-		dispatch({type: GET_USER_POSTS, payload: filteredResponse /*should be response.data*/})
-	} catch(err) {
-		//do something with error
-	}
-}
+// 	try {
+// 		const response = await baseURL.get('/posts' /* will probably be a different endpoint */);
+// 		// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
+// 		const filteredResponse = response.data.filter(post => post.email === email)
+// 		//
+// 		dispatch({type: GET_USER_POSTS, payload: filteredResponse /*should be response.data*/})
+// 	} catch(err) {
+// 		//do something with error
+// 	}
+// }
 
 
 

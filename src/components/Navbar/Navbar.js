@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NavIcon from './NavIcon';
-import { signOut } from '../../actions';
+import { signOut, setViewedUser } from '../../actions';
 
-const Navbar = ({ signOut }) => {
+const Navbar = ({ signOut, setViewedUser, currentUser }) => {
 
 	const homeIcon = () => {
 		return(
@@ -36,10 +36,12 @@ const Navbar = ({ signOut }) => {
 					path='/main/home'
 					content={homeIcon()}
 				/>
-				<NavIcon 
-					path='/main/profile/:id'
-					content={profileIcon()}
-				/>
+				<button 
+					onClick={() => setViewedUser(currentUser.email)}
+					className='cursor-pointer hover:bg-red-100 w-10 mx-1 py-1'
+				>
+					{profileIcon()}
+				</button>
 				<NavIcon 
 					path='/main/search'
 					content={searchIcon()}
@@ -56,9 +58,14 @@ const Navbar = ({ signOut }) => {
 	);
 }
 
+const mapStateToProps = (state) => ({
+	currentUser: state.currentUserReducer.data	
+})
+
 const mapDispatchToProps = {
-	signOut
+	signOut,
+	setViewedUser
 }
 
-export default connect(null, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
 

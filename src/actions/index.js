@@ -1,4 +1,5 @@
-import baseURL from '../api/axios';
+import baseURL from '../api';
+//WILL HAVE TO CHANGE URL IN ALL REQUESTS
 import history from '../history';
 
 import {

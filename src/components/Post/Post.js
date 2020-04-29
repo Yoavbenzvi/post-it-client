@@ -18,7 +18,7 @@ const Post = ({ name, created, content, likes}) => {
 					{name}
 				</div>
 				<div className='text-xs text-gray-400 mx-5'>
-					{created}
+					{created.substring(0, 10)}
 				</div>
 			</div>
 			<div>

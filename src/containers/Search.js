@@ -1,6 +1,7 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import baseURL from '../api/axios'
+import { connect } from 'react-redux';
+import { Field, reduxForm, reset } from 'redux-form';
+import baseURL from '../api'
 import SearchResults from '../components/SearchResults/SearchResults';
 
 class Search extends React.Component {
@@ -29,7 +30,7 @@ class Search extends React.Component {
 	}
 
 	onSearchSubmit = ({ searchTerm }) => {
-
+		//TO CHANGE URL
 		baseURL.get('/users')
 			.then(response => {
 				// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
@@ -39,6 +40,8 @@ class Search extends React.Component {
 				this.setState({ results: filteredResponse}) 
 				:
 				this.setState({results: []}); // <== CHANGE
+				;
+				this.props.reset()
 			})
 				.catch(err => console.log("sorry, there's an error!")) // Should do something here
 	}
@@ -57,6 +60,12 @@ class Search extends React.Component {
 	}
 }
 
-export default reduxForm({
+const mapDispatchToProps = {
+	reset
+}
+
+const WrappedSearch = reduxForm({
 	form: 'searchUsers'
 })(Search);
+
+export default connect(null, mapDispatchToProps)(WrappedSearch)

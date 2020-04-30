@@ -4,9 +4,13 @@ import WelcomeText from '../components/welcome-page/WelcomeText';
 import SignIn from '../components/welcome-page/SignIn';
 import SignUp from '../components/welcome-page/SignUp';
 
+//delete
+import Modal from '../components/Modal/Modal';
+
 const Welcome = () => {
 	return(
 		<div className='flex w-screen h-screen'>
+			<Modal />
 			<div className='w-8/12 bg-cus-1 z-0 flex justify-center items-center'>
 				<Switch>
 					<Route path='/register' component={SignUp} />			

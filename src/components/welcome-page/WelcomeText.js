@@ -3,15 +3,15 @@ import Logo from '../../logo_transparent.png'
 
 const WelcomeText = () => {
 	return(
-		<div className='p-12 text-white mt-4'>
-			<div className='p-2'>
-				<div className='w-full flex justify-center'>
-					<img src={Logo} className='w-48 h-48'/>
+		<div className='lg:p-12 text-white mt-4'>
+			<div className='p-2 text-center'>
+				<div className='text-3xs lg:text-base w-full flex justify-center'>
+					<img src={Logo} alt='Post-It-Logo' className='w-24 h-24 lg:w-48 lg:h-48'/>
 				</div>
-				<div className='mb-6'>
-					<h3 className='text-center font-bold'>Welcome to Post-It! </h3>
+				<div className='mb-2 lg:mb-6'>
+					<h3 className=' font-bold'>Welcome to Post-It! </h3>
 				</div>
-				<p>
+				<p className='lg:text-left'>
 					Post-It is a simple and quick 
 					app to let everybody know
 					what's on your mind, what

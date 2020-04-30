@@ -11,7 +11,7 @@ const renderInputField = ({ input }) => {
 				<textarea 
 					{...input}
 					maxLength='60'
-					className='w-1/2 self-center border-2 border-md border-gray-600 bg-white text-center h-10 px-5 pr-16  text-sm focus:outline-none' 
+					className='lg:w-1/2 md:w-4/5 self-center border-2 border-md border-gray-600 bg-white text-center h-10 px-8 lg:px-16 text-sm focus:outline-none' 
 					type='text' 
 					placeholder="Write a new post..." 
 				/>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const ProfileDetails = ({ viewedUser }) => {
 	return(
-		<div className="p-8 w-1/2">
+		<div className="p-0 m-4 md:w-4/5 lg:p-8 lg:w-1/2">
 			<div className="shadow-xl rounded-lg">
 				<div className="h-32 bg-gray-200 bg-cover bg-center rounded-t-lg flex items-center justify-center"> 
 				</div>

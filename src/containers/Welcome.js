@@ -10,15 +10,14 @@ import Modal from '../components/Modal/Modal';
 const Welcome = () => {
 	return(
 		<div className='flex w-screen h-screen'>
-			<Modal />
+			<div className='w-4/12 bg-cus-4 flex justify-center shadow-cos1 z-10'>
+				<WelcomeText />
+			</div>
 			<div className='w-8/12 bg-cus-1 z-0 flex justify-center items-center'>
 				<Switch>
 					<Route path='/register' component={SignUp} />			
 					<Route path='/' component={SignIn} />
 				</Switch>
-			</div>
-			<div className='w-4/12 bg-cus-4 flex justify-center shadow-cos1 z-10'>
-				<WelcomeText />
 			</div>
 		</div>
 	)

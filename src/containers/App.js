@@ -13,7 +13,7 @@ const App = () => {
 	return (
 		<div>
 			<Router history={history}>
-				<div className='flex'>
+				<div className='lg:flex'>
 						<Route path='/spinner' exact component={Spinner} />
 						<Route path='/' exact component={Welcome}/>		
 						<Route path='/register' exact component={Welcome}/>

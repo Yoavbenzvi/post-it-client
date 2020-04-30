@@ -1,16 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getAllPosts, setViewedUser } from '../../actions'
 import baseURL from '../../api'
-//to use history to determine which response to get, all or juts user
 import history from '../../history';
 
-const Post = ({ currentUser, id, email, name, created, content, likes}) => {
+const Post = ({ setViewedUser, getAllPosts, currentUser, id, email, name, created, content, likes}) => {
 
 	const deletePost = (postId) => {
 		//to change after connection to real backend
 		baseURL.delete(`/posts/${id}`)
-			.then(res => console.log(res))
-		//probably use same existing type of get all or get user?
+			.then(() => {
+				history.location.pathname === '/main/home' ?
+				getAllPosts () :
+				setViewedUser(email);
+			})
 	}
 
 	const showDelete = () => {
@@ -78,4 +81,9 @@ const mapStateToProps = (state) => ({
 	currentUser: state.currentUserReducer.data
 })
 
-export default connect(mapStateToProps)(Post);
+const mapDispatchToProps = {
+	getAllPosts,
+	setViewedUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

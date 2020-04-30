@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
+import { getAllPosts } from '../actions'
 import baseURL from '../api';
 import Feed from '../components/Feed/Feed';
 
@@ -28,7 +29,7 @@ const renderInputField = ({ input }) => {
 	)
 }
 
-const Home = ({ resetForm, handleSubmit, reset, currentUser }) => {
+const Home = ({ getAllPosts, resetForm, handleSubmit, reset, currentUser }) => {
 
 	const publishPost = (formValues) => {
 		//change url later
@@ -45,9 +46,11 @@ const Home = ({ resetForm, handleSubmit, reset, currentUser }) => {
 		})
 			//Should respond with all posts -
 			// and change the feed in the store!
-			.then(response => {
-				reset('writePost')
-			})
+			.then(() => {
+					reset('writePost');
+					getAllPosts();
+				}
+			)
 	}
 
 	return(
@@ -70,6 +73,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
 	reset,
+	getAllPosts
 }
 
 const WrappedHome = reduxForm({

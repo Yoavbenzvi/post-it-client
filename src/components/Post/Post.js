@@ -1,6 +1,32 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import baseURL from '../../api'
+//to use history to determine which response to get, all or juts user
+import history from '../../history';
 
-const Post = ({ name, created, content, likes}) => {
+const Post = ({ currentUser, id, email, name, created, content, likes}) => {
+
+	const deletePost = (postId) => {
+		//to change after connection to real backend
+		baseURL.delete(`/posts/${id}`)
+			.then(res => console.log(res))
+		//probably use same existing type of get all or get user?
+	}
+
+	const showDelete = () => {
+		if(currentUser.email === email)
+		return(
+			<button 
+				onClick={() => deletePost(id)}
+				className='ml-1 md:ml-2 w-4 h-4'
+			>		
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+					<path className="heroicon-ui w-4 h-4" d="M8 6V4c0-1.1.9-2 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8H3a1 1 0 1 1 0-2h5zM6 8v12h12V8H6zm8-2V4h-4v2h4zm-4 4a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0v-6a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0v-6a1 1 0 0 1 1-1z"/>
+				</svg>
+			</button>
+		)
+	}
+
 	return(
 		<div className='text-s m-3 p-2 border-t-2'>
 			<div className='flex items-end pb-1'>
@@ -17,9 +43,10 @@ const Post = ({ name, created, content, likes}) => {
 				<div className='font-bold text-xs bold mx-3'>
 					{name}
 				</div>
-				<div className='text-xs text-gray-400 mx-5'>
+				<div className='text-2xs lg:text-xs text-gray-400 lg:mx-5'>
 					{created.substring(0, 10)}
 				</div>
+				{showDelete()}
 			</div>
 			<div>
 				<div className='p-4'>
@@ -47,4 +74,8 @@ const Post = ({ name, created, content, likes}) => {
 	)
 }
 
-export default Post;
+const mapStateToProps = (state) => ({
+	currentUser: state.currentUserReducer.data
+})
+
+export default connect(mapStateToProps)(Post);

@@ -19,6 +19,7 @@ class Feed extends React.Component {
 					this.props.feed.map(post => {
 						return <Post 
 							key={post.id}
+							id={post.id}
 							name={post.name}
 							created={post.created}
 							content={post.content}

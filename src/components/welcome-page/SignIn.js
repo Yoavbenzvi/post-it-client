@@ -41,12 +41,8 @@ const renderPasswordField = ({ input }) => {
 const SignIn = ({ handleSubmit, signIn }) => {
 
 	const submitSignInForm = (formValues) => {
-		console.log('form values changed \n', {...formValues, email: formValues.email.toLowerCase()})
-
 		baseURL.post('/login', {...formValues, email: formValues.email.toLowerCase()})
 			.then(response => {
-
-				console.log('response \n', response.data)
 				signIn(response.data)
 			})
 			.catch(err => console.log('Login Problem:', err)) //CHANGE TO MODAL POPUP

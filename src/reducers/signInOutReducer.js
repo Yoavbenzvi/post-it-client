@@ -3,7 +3,10 @@ import { SIGN_IN, SIGN_OUT } from '../actions/constants';
 
 const initialState = {
 	isLoggedIn: false,
-	data: null
+	data: {
+		id: null,
+		email: null
+	}
 }
 
 export default (state = initialState, { type, payload }) => {

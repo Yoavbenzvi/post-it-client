@@ -8,6 +8,8 @@ import {
 	SET_VIEWED_USER,
 	GET_USER_POSTS,
 	GET_ALL_POSTS,
+	SET_FEED,
+	DELETE_POST
 } from './constants';
 
 export const signIn = (payload) => (dispatch) => {
@@ -23,19 +25,13 @@ export const signOut = () => ({
 export const setViewedUser = (email) => async (dispatch) => {
 
 	try {
-		const response = await baseURL.get('/users');
-		// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
-		const user = await response.data.find(user => user.email === email)
-		//	try {
-		const secondResponse = await baseURL.get('/posts' /* will probably be a different endpoint */);
-		// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
-		const filteredResponse = secondResponse.data.filter(post => post.email === email)
-		//
-		dispatch({type: GET_USER_POSTS, payload: filteredResponse /*should be response.data*/})
-	
-		dispatch({type: SET_VIEWED_USER, payload: user})
+		const userResponse = await baseURL.get(`/get-user-info/${email}`)
+		const postsResponse = await baseURL.get(`/get-user-posts/${email}`)
 
-		history.push(`/main/profile/${user.id}`)
+		dispatch({type: SET_VIEWED_USER, payload: userResponse.data})
+		dispatch({type: GET_USER_POSTS, payload: postsResponse.data})
+
+		history.push(`/main/profile/${userResponse.data.id}`)
 
 	} catch(err) {
 		//do something here
@@ -46,7 +42,7 @@ export const setViewedUser = (email) => async (dispatch) => {
 export const getAllPosts = () => async (dispatch) => {										
 
 	try {
-		const response = await baseURL.get('/posts' /* will probably be a different endpoint */)
+		const response = await baseURL.get('/get-all-posts')
 		dispatch({type: GET_ALL_POSTS, payload: response.data})
 	} catch(err) {
 		//do something with error
@@ -54,18 +50,22 @@ export const getAllPosts = () => async (dispatch) => {
 
 }
 
-// export const getUserPosts = (email) => async (dispatch) => {
+export const deletePost = (postId) => async (dispatch) => {
+	
+	try {
 
-// 	try {
-// 		const response = await baseURL.get('/posts' /* will probably be a different endpoint */);
-// 		// THIS IS SUPPOSED TO BE DONE IN THE BACKEND
-// 		const filteredResponse = response.data.filter(post => post.email === email)
-// 		//
-// 		dispatch({type: GET_USER_POSTS, payload: filteredResponse /*should be response.data*/})
-// 	} catch(err) {
-// 		//do something with error
-// 	}
-// }
+		const response = await baseURL.delete(`/delete-post/${postId}`);
+		dispatch({type: SET_FEED, payload: response.data})
+
+	} catch(err) {
+		//do something
+	}
+}
+
+export const setFeed = (payload) => ({
+	type: SET_FEED, payload
+})
+
 
 
 

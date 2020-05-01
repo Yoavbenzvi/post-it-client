@@ -1,20 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAllPosts, setViewedUser } from '../../actions'
+import { getAllPosts, setViewedUser, deletePost } from '../../actions'
 import baseURL from '../../api'
 import history from '../../history';
 
-const Post = ({ setViewedUser, getAllPosts, currentUser, id, email, name, created, content, likes}) => {
-
-	const deletePost = (postId) => {
-		//to change after connection to real backend
-		baseURL.delete(`/posts/${id}`)
-			.then(() => {
-				history.location.pathname === '/main/home' ?
-				getAllPosts () :
-				setViewedUser(email);
-			})
-	}
+const Post = ({ deletePost, setViewedUser, getAllPosts, currentUser, id, email, name, created, content, likes}) => {
 
 	const showDelete = () => {
 		if(currentUser.email === email)
@@ -83,7 +73,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
 	getAllPosts,
-	setViewedUser
+	setViewedUser,
+	deletePost
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

@@ -1,17 +1,9 @@
 import { SIGN_IN, SIGN_OUT } from '../actions/constants';
 
 
-const fakeInitialState = {	
-	"id": 1,
-	"email": "dean@gmail.com",
-	"name": "Dean",
-	"joined": "20.04.2019",
-	"posts": [1, 2]
-}
-
 const initialState = {
 	isLoggedIn: false,
-	data: fakeInitialState //SHOULD BE NULL
+	data: null
 }
 
 export default (state = initialState, { type, payload }) => {

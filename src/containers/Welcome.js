@@ -6,7 +6,7 @@ import SignUp from '../components/welcome-page/SignUp';
 
 const Welcome = () => {
 	return(
-		<div className='lg:bg-blue-400 lg:w-full lg:h-screen lg:flex lg:justify-center lg:items-center'>
+		<div className='md:bg-blue-400 md:w-full md:h-full lg:h-screen lg:flex lg:justify-center lg:items-center'>
 			<div className='flex flex-col lg:flex-row lg:w-4/5 lg:shadow-2xl'>
 				<div className='w-full lg:w-4/12 bg-cus-4 flex justify-center shadow-md lg:shadow-cos1 z-10'>
 					<WelcomeText />

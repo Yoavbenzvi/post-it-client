@@ -10,10 +10,11 @@ import {
 	GET_ALL_POSTS,
 } from './constants';
 
-export const signIn = (payload) => ({
-	type: SIGN_IN,
-	payload
-});
+export const signIn = (payload) => (dispatch) => {
+	dispatch({type: SIGN_IN, payload})
+
+	history.push('/main/home')
+};
 
 export const signOut = () => ({
 	type: SIGN_OUT

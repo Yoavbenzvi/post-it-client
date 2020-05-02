@@ -5,7 +5,7 @@ import Post from '../Post/Post';
 class Feed extends React.Component {
 	render() {
 		return(
-			<div className='w-full py-2 px-32'>
+			<div className='block w-full py-2 lg:px-32'>
 				{
 					this.props.feed.sort((a, b) => a.id - b.id).reverse().map(post => {
 						return <Post 

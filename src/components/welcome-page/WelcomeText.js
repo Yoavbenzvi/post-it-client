@@ -3,7 +3,7 @@ import Logo from '../../logo_transparent.png'
 
 const WelcomeText = () => {
 	return(
-		<div className='p-12 text-white mt-4'>
+		<div className='lg:p-12 text-white mt-4'>
 			<div className='p-2 text-center'>
 				<div className='text-3xs lg:text-base w-full flex justify-center'>
 					<img src={Logo} alt='Post-It-Logo' className='w-24 h-24 lg:w-48 lg:h-48'/>

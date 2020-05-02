@@ -63,7 +63,7 @@ const Post = ({ getAllPosts, setViewedUser, deletePost, currentUser, id, email, 
 	}
 
 	return(
-		<div className='min-w-full text-s shadow-lg my-5 py-3 px-6 rounded-md border-t-2 bg-white min-width-full'>
+		<div className='text-s shadow-lg my-5 py-3 px-6 rounded-md bg-white'>
 			<div className='flex items-end pb-1'>
 				<svg 
 					className='h-10 w-10 border rounded-full'

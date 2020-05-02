@@ -36,6 +36,7 @@ const Navbar = ({ signOut, setViewedUser, currentUser }) => {
 					content={homeIcon()}
 				/>
 				<NavIcon 			
+					onClick={() => setViewedUser(currentUser.id)}
 					path={`/main/profile/${currentUser.id}`}
 					content={profileIcon()}
 				/>
@@ -61,7 +62,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
 	signOut,
-	setViewedUser
+	setViewedUser,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

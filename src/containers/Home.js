@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
-import { setFeed } from '../actions'
+import { setFeed, getAllPosts } from '../actions'
 import baseURL from '../api';
 import Feed from '../components/Feed/Feed';
 
@@ -29,34 +29,41 @@ const renderInputField = ({ input }) => {
 	)
 }
 
-const Home = ({ setFeed, resetForm, handleSubmit, reset, currentUser }) => {
+//{ setFeed, resetForm, handleSubmit, reset, currentUser }
 
-	const publishPost = (formValues) => {
+class Home extends React.Component {
+
+	componentDidMount() {
+		this.props.getAllPosts()
+	}
+
+	publishPost = (formValues) => {
 		
 		baseURL.post('/add-post', {
-			email: currentUser.email,
-			name: currentUser.name,
+			email: this.props.currentUser.email,
+			name: this.props.currentUser.name,
 			content: formValues.content
 		})
 			.then(response => {
-				reset('writePost');
-				setFeed(response.data)
+				this.props.reset('writePost');
+				this.props.setFeed(response.data)
 			})
 			.catch(err => console.log('some error, add something here'))
 	}
-
-	return(
-		<div className='w-full flex justify-center p-2'>
-			<div className='w-full flex flex-col'>
-				<form
-					onSubmit={handleSubmit(publishPost)}
-				>
-					<Field name='content' component={renderInputField}/>
-				</form>
-				<Feed/>
+	render() {
+		return(
+			<div className='w-full flex justify-center p-2'>
+				<div className='w-full flex flex-col'>
+					<form
+						onSubmit={this.props.handleSubmit(this.publishPost)}
+					>
+						<Field name='content' component={renderInputField}/>
+					</form>
+					<Feed/>
+				</div>
 			</div>
-		</div>
-	)
+		)
+	}
 }
 
 const mapStateToProps = (state) => ({
@@ -65,7 +72,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
 	reset,
-	setFeed
+	setFeed,
+	getAllPosts
 }
 
 const WrappedHome = reduxForm({

@@ -23,7 +23,9 @@ export const setViewedUser = (id) => async (dispatch) => {
 
 	try {
 		const userResponse = await baseURL.get(`/get-user-info/${id}`)
+		const response = await baseURL.get(`/get-user-posts/${id}`)
 		dispatch({type: SET_VIEWED_USER, payload: userResponse.data})
+		dispatch({type: SET_FEED, payload: response.data})
 	} catch(err) {
 		//do something here
 	}

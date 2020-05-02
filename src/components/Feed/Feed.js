@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import history from '../../history';
-import { getAllPosts } from '../../actions';
 import Post from '../Post/Post';
 
 class Feed extends React.Component {
@@ -9,7 +7,7 @@ class Feed extends React.Component {
 		return(
 			<div className='w-full'>
 				{
-					this.props.feed.map(post => {
+					this.props.feed.sort((a, b) => a.id - b.id).reverse().map(post => {
 						return <Post 
 							key={post.id}
 							id={post.id}
@@ -19,7 +17,7 @@ class Feed extends React.Component {
 							likes={post.likes}
 							email={post.email}
 						/>
-					}).sort((a, b) => a - b).reverse().splice(0,51)
+					}).splice(0,51)
 				}
 			</div>
 		)
@@ -32,8 +30,4 @@ const mapStateToProps = (state) => ({
 	feed: state.feedReducer.feed
 })
 
-const mapDispatchToProps = {
-	getAllPosts,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Feed);
+export default connect(mapStateToProps)(Feed);

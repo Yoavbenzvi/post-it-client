@@ -1,5 +1,4 @@
 import baseURL from '../api';
-//WILL HAVE TO CHANGE URL IN ALL REQUESTS
 import history from '../history';
 
 import {
@@ -31,17 +30,6 @@ export const setViewedUser = (id) => async (dispatch) => {
 	}
 
 };
-
-export const getUserPosts = (email) => async (dispatch) => {										
-
-	try {
-		const response = await baseURL.get(`/get-user-posts/${email}`)
-		dispatch({type: SET_FEED, payload: response.data})
-	} catch(err) {
-		//do something with error
-	}
-
-}
 
 export const getAllPosts = () => async (dispatch) => {										
 

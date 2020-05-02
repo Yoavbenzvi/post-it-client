@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAllPosts, setViewedUser, deletePost } from '../../actions'
+import { deletePost, setViewedUser, getAllPosts } from '../../actions';
+import history from '../../history';
+import baseURL from '../../api';
 
-const Post = ({ deletePost, setViewedUser, getAllPosts, currentUser, id, email, name, created, content, likes}) => {
+const Post = ({ getAllPosts, setViewedUser, deletePost, currentUser, id, email, name, created, content, likes}) => {
 
 	const showDelete = () => {
 		if(currentUser.email === email)
@@ -16,6 +18,50 @@ const Post = ({ deletePost, setViewedUser, getAllPosts, currentUser, id, email, 
 				</svg>
 			</button>
 		)
+	}
+
+	const color = () => {
+		if(currentUser.email === email) {
+			return 'fill-current text-blue-500'
+		} else if(currentUser.email !== email && likes.includes(currentUser.email)){
+			return 'fill-current text-red-500 cursor-pointer'
+		} else {
+			return 'fill-current text-blue-500 cursor-pointer'
+		}
+	}
+
+	const changeLike = () => {
+
+		const location = history.location.pathname
+
+		//dfine path with history -
+		// home - get all
+		// profile - set view
+
+		if(currentUser.email !== email) {
+			likes.includes(currentUser.email) ?
+				baseURL.patch('/remove-like', {
+					id,
+					email: currentUser.email
+				})
+					.then(res => {
+						location === '/main/home' ?
+							getAllPosts()
+							:
+							setViewedUser(location.substring(14))
+					})
+			:
+				baseURL.patch('/add-like', {
+					id,
+					email: currentUser.email
+				})
+					.then(res => {
+						location === '/main/home' ?
+							getAllPosts()
+							:
+							setViewedUser(location.substring(14))
+					})
+		}
 	}
 
 	return(
@@ -46,7 +92,8 @@ const Post = ({ deletePost, setViewedUser, getAllPosts, currentUser, id, email, 
 				<div className='flex'>
 					<div className='h-6 w-6'>
 						<svg 
-							className='fill-current text-red-500'
+							onClick={changeLike}
+							className={color()}
 							xmlns="http://www.w3.org/2000/svg" 
 							viewBox="0 0 24 24"
 						>
@@ -70,9 +117,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-	getAllPosts,
 	setViewedUser,
-	deletePost
+	deletePost,
+	getAllPosts
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

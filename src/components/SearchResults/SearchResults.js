@@ -14,7 +14,7 @@ const SearchResults = ({ results }) => {
 	}
 
 	return(
-		<div className=''>
+		<div className='w-1/3'>
 			{renderedResults()}
 		</div>
 	)

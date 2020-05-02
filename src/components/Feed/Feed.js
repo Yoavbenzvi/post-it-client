@@ -26,7 +26,7 @@ class Feed extends React.Component {
 							likes={post.likes}
 							email={post.email}
 						/>
-					})
+					}).reverse().splice(0,51)
 				}
 			</div>
 		)

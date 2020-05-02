@@ -6,10 +6,7 @@ import {
 	SIGN_IN,
 	SIGN_OUT,
 	SET_VIEWED_USER,
-	GET_USER_POSTS,
-	GET_ALL_POSTS,
 	SET_FEED,
-	DELETE_POST
 } from './constants';
 
 export const signIn = (payload) => (dispatch) => {
@@ -29,7 +26,7 @@ export const setViewedUser = (email) => async (dispatch) => {
 		const postsResponse = await baseURL.get(`/get-user-posts/${email}`)
 
 		dispatch({type: SET_VIEWED_USER, payload: userResponse.data})
-		dispatch({type: GET_USER_POSTS, payload: postsResponse.data})
+		dispatch({type: SET_FEED, payload: postsResponse.data})
 
 		history.push(`/main/profile/${userResponse.data.id}`)
 
@@ -43,7 +40,7 @@ export const getAllPosts = () => async (dispatch) => {
 
 	try {
 		const response = await baseURL.get('/get-all-posts')
-		dispatch({type: GET_ALL_POSTS, payload: response.data})
+		dispatch({type: SET_FEED, payload: response.data})
 	} catch(err) {
 		//do something with error
 	}

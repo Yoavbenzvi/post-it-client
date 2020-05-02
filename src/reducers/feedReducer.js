@@ -1,4 +1,4 @@
-import { GET_USER_POSTS, GET_ALL_POSTS, SET_FEED } from '../actions/constants';
+import { SET_FEED, SIGN_OUT } from '../actions/constants';
 
 const initialState = {
 	feed: []
@@ -6,12 +6,10 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
 	switch(type) {
-		case GET_USER_POSTS:
-			return {...state, feed: payload};
-		case GET_ALL_POSTS:
-			return {...state, feed: payload};
 		case SET_FEED:
 			return {...state, feed: payload};
+		case SIGN_OUT:
+			return {...state, feed: []}
 		default: 
 			return state;
 	}

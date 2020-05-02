@@ -14,7 +14,7 @@ export default (state = initialState, { type, payload }) => {
 		case SIGN_IN:
 			return {...state, isLoggedIn: true, data: payload};
 		case SIGN_OUT:
-			return {...state, isLoggedIn: false, data: null };
+			return {...state, isLoggedIn: false, data: {id: null, email: null}};
 		default:
 	}		return state;
 }

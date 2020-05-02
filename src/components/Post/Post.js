@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getAllPosts, setViewedUser, deletePost } from '../../actions'
-import baseURL from '../../api'
-import history from '../../history';
 
 const Post = ({ deletePost, setViewedUser, getAllPosts, currentUser, id, email, name, created, content, likes}) => {
 

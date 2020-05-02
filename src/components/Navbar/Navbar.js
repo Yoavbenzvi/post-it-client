@@ -29,7 +29,7 @@ const Navbar = ({ signOut, setViewedUser, currentUser }) => {
 	}
 
 	return(
-		<div className='w-screen flex justify-between lg:w-auto lg:h-screen lg:inline-flex lg:flex-col sticky top-0 bg-white'>
+		<div className='w-screen z-49 flex justify-between lg:w-auto lg:h-screen lg:inline-flex lg:flex-col sticky top-0 bg-white'>
 			<div className='flex lg:flex-col'>
 				<NavIcon 
 					path='/main/home'
@@ -37,7 +37,7 @@ const Navbar = ({ signOut, setViewedUser, currentUser }) => {
 				/>
 				<button 
 					onClick={() => setViewedUser(currentUser.email)}
-					className='cursor-pointer hover:bg-red-100 w-8 lg:w-10 mx-1 py-1'
+					className='cursor-pointer hover:bg-red-100 lg:w-10 w-8 mx-1 py-1'
 				>
 					{profileIcon()}
 				</button>
@@ -48,7 +48,7 @@ const Navbar = ({ signOut, setViewedUser, currentUser }) => {
 			</div>
 			<div className='flex items-end'>
 				<NavIcon
-					onClick={() => signOut()}
+					onClick={signOut}
 					path='/'
 					content={logoutIcon()}
 				/>

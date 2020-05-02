@@ -29,7 +29,7 @@ const Navbar = ({ signOut, setViewedUser, currentUser }) => {
 	}
 
 	return(
-		<div className='w-screen z-49 flex justify-between lg:w-auto lg:h-screen lg:inline-flex lg:flex-col sticky top-0 bg-white'>
+		<div className='w-screen z-49 bg-cus-1 flex justify-between lg:w-auto lg:h-screen lg:inline-flex lg:flex-col sticky top-0'>
 			<div className='flex lg:flex-col'>
 				<NavIcon 
 					path='/main/home'

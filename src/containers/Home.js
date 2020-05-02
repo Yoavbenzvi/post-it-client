@@ -8,22 +8,24 @@ import Feed from '../components/Feed/Feed';
 const renderInputField = ({ input }) => {
 	return(
 		<div>
-			<div className='flex justify-center'>
-				<textarea 
-					{...input}
-					maxLength='60'
-					className='lg:w-1/2 md:w-4/5 self-center border-2 border-md border-gray-600 bg-white text-center h-10 px-8 lg:px-16 text-sm focus:outline-none' 
-					type='text' 
-					placeholder="Write a new post..." 
-				/>
-			</div>
-			<div className='flex justify-center'>
-				<button 
-					className='m-2 w-1/6 rounded shadow-md shadow bg-blue-500 text-white hover:bg-blue-400'
-					type='submit'
-				>
-					Post
-				</button>
+			<div className='rounded-md shadow-md bg-blue-300 p-4 flex flex-col container mx-auto'>
+				<div className='flex justify-center'>
+					<textarea 
+						{...input}
+						maxLength='60'
+						className='focus:border-blue-300 shadow-md lg:w-1/2 md:w-4/5 self-center border-2 border-lg border-gray-300 bg-white text-center h-10 px-8 lg:px-16 text-sm focus:outline-none' 
+						type='text' 
+						placeholder="Write a new post..." 
+					/>
+				</div>
+				<div className='flex justify-center'>
+					<button 
+						className='m-2 w-1/6 rounded shadow-md shadow bg-blue-500 text-white hover:bg-blue-400'
+						type='submit'
+					>
+						Post
+					</button>
+				</div>
 			</div>
 		</div>
 	)
@@ -50,6 +52,7 @@ class Home extends React.Component {
 			})
 			.catch(err => console.log('some error, add something here'))
 	}
+
 	render() {
 		return(
 			<div className='w-full flex justify-center p-2'>

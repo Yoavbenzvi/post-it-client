@@ -22,21 +22,17 @@ const Post = ({ getAllPosts, setViewedUser, deletePost, currentUser, id, email, 
 
 	const color = () => {
 		if(currentUser.email === email) {
-			return 'fill-current text-blue-500'
+			return 'fill-current text-gray-500'
 		} else if(currentUser.email !== email && likes.includes(currentUser.email)){
 			return 'fill-current text-red-500 cursor-pointer'
 		} else {
-			return 'fill-current text-blue-500 cursor-pointer'
+			return 'fill-current text-gray-500 cursor-pointer'
 		}
 	}
 
 	const changeLike = () => {
 
 		const location = history.location.pathname
-
-		//dfine path with history -
-		// home - get all
-		// profile - set view
 
 		if(currentUser.email !== email) {
 			likes.includes(currentUser.email) ?
@@ -50,6 +46,7 @@ const Post = ({ getAllPosts, setViewedUser, deletePost, currentUser, id, email, 
 							:
 							setViewedUser(location.substring(14))
 					})
+					.catch(/*add modal here*/)
 			:
 				baseURL.patch('/add-like', {
 					id,
@@ -61,11 +58,12 @@ const Post = ({ getAllPosts, setViewedUser, deletePost, currentUser, id, email, 
 							:
 							setViewedUser(location.substring(14))
 					})
+					.catch(/*add modal here*/)
 		}
 	}
 
 	return(
-		<div className='text-s m-3 p-2 border-t-2'>
+		<div className='min-w-full text-s shadow-lg my-5 py-3 px-6 rounded-md border-t-2 bg-white min-width-full'>
 			<div className='flex items-end pb-1'>
 				<svg 
 					className='h-10 w-10 border rounded-full'
@@ -80,7 +78,7 @@ const Post = ({ getAllPosts, setViewedUser, deletePost, currentUser, id, email, 
 				<div className='font-bold text-xs bold mx-3'>
 					{name}
 				</div>
-				<div className='text-2xs lg:text-xs text-gray-400 lg:mx-5'>
+				<div className='text-2xs lg:text-xs text-gray-500 lg:mx-5'>
 					{created.substring(0, 10)}
 				</div>
 				{showDelete()}

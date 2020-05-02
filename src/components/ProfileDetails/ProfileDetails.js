@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 const ProfileDetails = ({ viewedUser }) => {
 	return(
-		<div className="p-0 m-4 md:w-4/5 lg:p-8 lg:w-1/2">
+		<div className="p-0 m-3 md:w-4/5 lg:p-8 lg:w-1/2">
 			<div className="shadow-xl rounded-lg">
-				<div className="h-32 bg-gray-200 bg-cover bg-center rounded-t-lg flex items-center justify-center"> 
+				<div className="h-32 bg-gray-400 bg-cover bg-center rounded-t-lg flex items-center justify-center"> 
 				</div>
 				<div className="bg-white rounded-b-lg px-8">
 					<div className="relative">				 
@@ -13,8 +13,8 @@ const ProfileDetails = ({ viewedUser }) => {
 					</div>
 					<div className="pt-8 pb-8">
 						<h1 className="text-2xl font-bold text-gray-700">{viewedUser.name}</h1>
-						<p className="text-sm text-gray-600">Joined {viewedUser.joined}</p>
-						<p className="text-sm text-gray-600">{viewedUser.posts.length} Posts</p>
+						<p className="text-sm text-gray-500">Joined {viewedUser.joined}</p>
+						<p className="text-sm text-gray-500">{viewedUser.posts.length} Posts</p>
 					</div>
 				</div>
 			</div>

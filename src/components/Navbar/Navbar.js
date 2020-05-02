@@ -35,12 +35,10 @@ const Navbar = ({ signOut, setViewedUser, currentUser }) => {
 					path='/main/home'
 					content={homeIcon()}
 				/>
-				<button 
-					onClick={() => setViewedUser(currentUser.email)}
-					className='cursor-pointer hover:bg-red-100 lg:w-10 w-8 mx-1 py-1'
-				>
-					{profileIcon()}
-				</button>
+				<NavIcon 			
+					path={`/main/profile/${currentUser.id}`}
+					content={profileIcon()}
+				/>
 				<NavIcon 
 					path='/main/search'
 					content={searchIcon()}

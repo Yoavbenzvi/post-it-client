@@ -19,22 +19,31 @@ export const signOut = () => ({
 	type: SIGN_OUT
 });
 
-export const setViewedUser = (email) => async (dispatch) => {
+export const setViewedUser = (id) => async (dispatch) => {
 
 	try {
-		const userResponse = await baseURL.get(`/get-user-info/${email}`)
-		const postsResponse = await baseURL.get(`/get-user-posts/${email}`)
+		const userResponse = await baseURL.get(`/get-user-info/${id}`)
+		// const postsResponse = await baseURL.get(`/get-user-posts/${id}`)
 
 		dispatch({type: SET_VIEWED_USER, payload: userResponse.data})
-		dispatch({type: SET_FEED, payload: postsResponse.data})
-
-		history.push(`/main/profile/${userResponse.data.id}`)
+		// dispatch({type: SET_FEED, payload: postsResponse.data})
 
 	} catch(err) {
 		//do something here
 	}
 
 };
+
+export const getUserPosts = (email) => async (dispatch) => {										
+
+	try {
+		const response = await baseURL.get(`/get-user-posts/${email}`)
+		dispatch({type: SET_FEED, payload: response.data})
+	} catch(err) {
+		//do something with error
+	}
+
+}
 
 export const getAllPosts = () => async (dispatch) => {										
 

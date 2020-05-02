@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import history from '../../history';
-import { getAllPosts } from '../../actions';
+import { getAllPosts, getUserPosts } from '../../actions';
 import Post from '../Post/Post';
 
 class Feed extends React.Component {
@@ -9,6 +9,9 @@ class Feed extends React.Component {
 	componentDidMount() {
 		if (history.location.pathname === '/main/home') {
 			this.props.getAllPosts()
+		} 
+		else {
+			this.props.getUserPosts(this.props.viewedUser.email)
 		}
 	}
 
@@ -41,6 +44,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
 	getAllPosts,
+	getUserPosts
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed);

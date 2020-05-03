@@ -64,8 +64,8 @@ export const toggleModalOff = () => ({
 	type: TOGGLE_MODAL_OFF
 })
 
-export const toggleModalOn = (payload) => ({
-	type: TOGGLE_MODAL_ON, payload
+export const toggleModalOn = () => ({
+	type: TOGGLE_MODAL_ON
 })
 
 

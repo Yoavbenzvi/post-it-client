@@ -57,7 +57,7 @@ const SignIn = ({ handleSubmit, signIn, toggleModalOn }) => {
 			.then(response => {
 				signIn(response.data)
 			})
-			.catch(err => toggleModalOn(true)) 
+			.catch(err => toggleModalOn()) 
 	}
 
 	return(

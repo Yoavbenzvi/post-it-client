@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deletePost, setViewedUser, getAllPosts } from '../../actions';
+import { deletePost, setViewedUser, getAllPosts, toggleModalOn } from '../../actions';
 import history from '../../history';
 import baseURL from '../../api';
+import Modal from '../Modal/Modal';
 
-const Post = ({ getAllPosts, setViewedUser, deletePost, currentUser, id, email, name, created, content, likes}) => {
+const Post = ({ toggleModalOn, getAllPosts, setViewedUser, deletePost, currentUser, id, email, name, created, content, likes}) => {
 	const showDelete = () => {
 		if(currentUser.email === email)
 		return(
@@ -65,7 +66,7 @@ const Post = ({ getAllPosts, setViewedUser, deletePost, currentUser, id, email, 
 			.then(res => {
 				history.push(`/main/profile/${res.data}`)
 			})
-			.catch(/*do something here*/)
+			.catch(toggleModalOn())
 	}
 
 	return(
@@ -124,7 +125,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
 	setViewedUser,
 	deletePost,
-	getAllPosts
+	getAllPosts,
+	toggleModalOn
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

@@ -77,7 +77,7 @@ const SignUp = ({ handleSubmit, signIn, toggleModalOn }) => {
 			.then(response => {
 				signIn(response.data)
 			})
-			.catch(err => toggleModalOn(true)) //CHANGE TO MODAL POPUP
+			.catch(err => toggleModalOn())
 	}
 
 	return(

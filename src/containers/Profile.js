@@ -5,6 +5,8 @@ import history from '../history';
 import Feed from '../components/Feed/Feed';
 import Spinner from '../components/Spinner/Spinner'
 import ProfileDetails from '../components/ProfileDetails/ProfileDetails';
+import Modal from '../components/Modal/Modal'
+
 
 class Profile extends React.Component{
 
@@ -21,16 +23,20 @@ class Profile extends React.Component{
 		}
 
 		return(
-			<div className='w-full flex flex-col items-center'>
-				<ProfileDetails />
-				<Feed/>
-			</div>
+			<React.Fragment>
+				{this.props.modal ? <Modal /> : null}
+				<div className='w-full flex flex-col items-center'>
+					<ProfileDetails />
+					<Feed/>
+				</div>
+			</React.Fragment>
 		)
 	}
 }
 
 const mapStateToProps = (state) => ({
-	viewedUser: state.viewedUserReducer.viewedUser
+	viewedUser: state.viewedUserReducer.viewedUser,
+	modal: state.modalReducer.modal
 })
 
 const mapDispatchToProps = {

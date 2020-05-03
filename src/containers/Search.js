@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
 import baseURL from '../api'
+import { toggleModalOn } from '../actions';
 import SearchResults from '../components/SearchResults/SearchResults';
+import Modal from '../components/Modal/Modal';
 
 class Search extends React.Component {
 
@@ -45,32 +47,41 @@ class Search extends React.Component {
 				;
 				this.props.reset()
 			})
+			.catch(toggleModalOn())
 	}
 
 	render() {	
 		return(
-			<div className='w-full flex justify-center p-2'>
-				<div className='w-full flex flex-col'>
-					<div>
-						<form onSubmit={this.props.handleSubmit(this.onSearchSubmit)}>
-							<Field name='searchTerm' component={this.renderInputField}/>
-						</form>
-					</div>
-					<div className='flex justify-center'>
-						<SearchResults results={this.state.results}/>
+			<React.Fragment>
+				{this.props.modal ? <Modal /> : null}
+				<div className='w-full flex justify-center p-2'>
+					<div className='w-full flex flex-col'>
+						<div>
+							<form onSubmit={this.props.handleSubmit(this.onSearchSubmit)}>
+								<Field name='searchTerm' component={this.renderInputField}/>
+							</form>
+						</div>
+						<div className='flex justify-center'>
+							<SearchResults results={this.state.results}/>
+						</div>
 					</div>
 				</div>
-			</div>
+			</React.Fragment>
 		)
 	}
 }
 
+const mapStateToProps = (state) => ({
+	modal: state.modalReducer.modal
+})
+
 const mapDispatchToProps = {
-	reset
+	reset,
+	toggleModalOn
 }
 
 const WrappedSearch = reduxForm({
 	form: 'searchUsers'
 })(Search);
 
-export default connect(null, mapDispatchToProps)(WrappedSearch)
+export default connect(mapStateToProps, mapDispatchToProps)(WrappedSearch)

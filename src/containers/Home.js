@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
-import { setFeed, getAllPosts } from '../actions'
+import { setFeed, getAllPosts, toggleModalOn } from '../actions'
 import baseURL from '../api';
 import Feed from '../components/Feed/Feed';
+import Modal from '../components/Modal/Modal';
 
 const renderInputField = ({ input, meta }) => {
 	return(
@@ -51,33 +52,38 @@ class Home extends React.Component {
 				this.props.reset('writePost');
 				this.props.setFeed(response.data)
 			})
-			.catch(err => console.log('some error, add something here'))
+			.catch(err => this.props.toggleModalOn())
 	}
 
 	render() {
 		return(
-			<div className='w-full flex justify-center p-2'>
-				<div className='w-full flex flex-col'>
-					<form
-						onSubmit={this.props.handleSubmit(this.publishPost)}
-					>
-						<Field name='content' component={renderInputField}/>
-					</form>
-					<Feed/>
+			<React.Fragment>
+				{this.props.modal ? <Modal /> : null }
+				<div className='w-full flex justify-center p-2'>
+					<div className='w-full flex flex-col'>
+						<form
+							onSubmit={this.props.handleSubmit(this.publishPost)}
+						>
+							<Field name='content' component={renderInputField}/>
+						</form>
+						<Feed/>
+					</div>
 				</div>
-			</div>
+			</React.Fragment>
 		)
 	}
 }
 
 const mapStateToProps = (state) => ({
-	currentUser: state.currentUserReducer.data
+	currentUser: state.currentUserReducer.data,
+	modal: state.modalReducer.modal
 })
 
 const mapDispatchToProps = {
 	reset,
 	setFeed,
-	getAllPosts
+	getAllPosts,
+	toggleModalOn,
 }
 
 const validate = (formValues) => {

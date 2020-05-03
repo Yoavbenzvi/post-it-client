@@ -5,18 +5,21 @@ import { setFeed, getAllPosts } from '../actions'
 import baseURL from '../api';
 import Feed from '../components/Feed/Feed';
 
-const renderInputField = ({ input }) => {
+const renderInputField = ({ input, meta }) => {
 	return(
 		<div>
-			<div className='rounded-md shadow-md bg-blue-300 p-4 flex flex-col container mx-auto'>
+			<div className='rounded-md shadow-md bg-blue-300 mt-1 p-4 flex flex-col container mx-auto'>
 				<div className='flex justify-center'>
 					<textarea 
 						{...input}
 						maxLength='60'
-						className='focus:border-blue-300 shadow-md lg:w-1/2 md:w-4/5 self-center border-2 border-lg border-gray-300 bg-white text-center h-10 px-8 lg:px-16 text-sm focus:outline-none' 
+						className='focus:border-blue-300 shadow-md lg:w-1/2 md:w-4/5 self-center border-2 border-lg {border-gray-300} bg-white text-center h-10 px-8 lg:px-16 text-sm focus:outline-none' 
 						type='text' 
 						placeholder="Write a new post..." 
 					/>
+				</div>
+				<div className='text-center text-sm text-red-500'>
+					{meta.submitFailed ? meta.error : null}
 				</div>
 				<div className='flex justify-center'>
 					<button 
@@ -30,8 +33,6 @@ const renderInputField = ({ input }) => {
 		</div>
 	)
 }
-
-//{ setFeed, resetForm, handleSubmit, reset, currentUser }
 
 class Home extends React.Component {
 
@@ -79,9 +80,19 @@ const mapDispatchToProps = {
 	getAllPosts
 }
 
+const validate = (formValues) => {
+	const errors = {};
+
+	if(!formValues.content) {
+		errors.content = '*No empty posts allowed'
+	}
+
+	return errors;
+}
+
 const WrappedHome = reduxForm({
 	form: 'writePost',
-	//validate
+	validate
 })(Home);
 
 export default connect(mapStateToProps, mapDispatchToProps)(WrappedHome)

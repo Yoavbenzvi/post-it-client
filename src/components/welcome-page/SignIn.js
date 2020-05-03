@@ -5,8 +5,12 @@ import { reduxForm, Field } from 'redux-form';
 import { signIn } from '../../actions';
 import baseURL from '../../api'
 
+const style = "mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
+const error = 'shadow appearance-none border border-red-500 bg-red-100 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline';
 
-const renderEmailField = ({ input }) => {
+const renderEmailField = ({ input, meta }) => {
+
+
 	return(
 		<div className="mb-4">
 			<label className="block text-gray-700 text-sm font-bold mb-2">
@@ -14,31 +18,39 @@ const renderEmailField = ({ input }) => {
 			</label>
 			<input 
 				{...input}
-				className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+				className={(meta.touched && meta.error) ? error : style}
 				type="email" 
 				placeholder="Enter username"
 			/>
+			<div className='text-xs text-red-500'>
+				{(meta.touched && meta.error) ? meta.error : null}
+			</div>
 		</div>
 	)
 }
 
-const renderPasswordField = ({ input }) => {
+const renderPasswordField = ({ input, meta }) => {
+
 	return(
-		<div className="mb-6">
+		<div className="mb-8">
 			<label className="block text-gray-700 text-sm font-bold mb-2">
 				Password
 			</label>
 			<input 
 				{...input}
-				className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+				className={(meta.touched && meta.error) ? error : style}
 				type="password" 
 				placeholder="Enter Password"
 			/>
+			<div className='text-xs text-red-500'>
+				{(meta.touched && meta.error) ? meta.error : null}
+			</div>
 		</div>
 	)
 }
 
 const SignIn = ({ handleSubmit, signIn }) => {
+
 
 	const submitSignInForm = (formValues) => {
 		baseURL.post('/login', {...formValues, email: formValues.email.toLowerCase()})
@@ -73,8 +85,23 @@ const mapDispatchToProps = {
 	signIn
 }
 
+const validate = (formValues) => {
+	const errors = {};
+
+	if(!formValues.email) {
+		errors.email = 'Email is required'
+	}
+
+	if(!formValues.password) {
+		errors.password = 'Password is required'
+	}
+
+	return errors
+}
+
 const WrappedSignIn = reduxForm({
-	form: 'signIn'
+	form: 'signIn',
+	validate
 })(SignIn)
 
 export default connect(null ,mapDispatchToProps)(WrappedSignIn);

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { deletePost, setViewedUser, getAllPosts, toggleModalOn } from '../../actions';
 import history from '../../history';
 import baseURL from '../../api';
-import Modal from '../Modal/Modal';
 
 const Post = ({ toggleModalOn, getAllPosts, setViewedUser, deletePost, currentUser, id, email, name, created, content, likes}) => {
 	const showDelete = () => {
@@ -57,7 +56,7 @@ const Post = ({ toggleModalOn, getAllPosts, setViewedUser, deletePost, currentUs
 							:
 							setViewedUser(location.substring(14))
 					})
-					.catch(/*add modal here*/)
+					.catch(toggleModalOn())
 		}
 	}
 
@@ -66,7 +65,6 @@ const Post = ({ toggleModalOn, getAllPosts, setViewedUser, deletePost, currentUs
 			.then(res => {
 				history.push(`/main/profile/${res.data}`)
 			})
-			.catch(toggleModalOn())
 	}
 
 	return(

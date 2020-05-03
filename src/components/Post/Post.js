@@ -5,7 +5,6 @@ import history from '../../history';
 import baseURL from '../../api';
 
 const Post = ({ getAllPosts, setViewedUser, deletePost, currentUser, id, email, name, created, content, likes}) => {
-
 	const showDelete = () => {
 		if(currentUser.email === email)
 		return(
@@ -31,7 +30,6 @@ const Post = ({ getAllPosts, setViewedUser, deletePost, currentUser, id, email, 
 	}
 
 	const changeLike = () => {
-
 		const location = history.location.pathname
 
 		if(currentUser.email !== email) {
@@ -62,11 +60,20 @@ const Post = ({ getAllPosts, setViewedUser, deletePost, currentUser, id, email, 
 		}
 	}
 
+	const handleClick = () => {
+		baseURL.get(`/get-user-id/${email}`)
+			.then(res => {
+				history.push(`/main/profile/${res.data}`)
+			})
+			.catch(/*do something here*/)
+	}
+
 	return(
 		<div className='text-s shadow-lg my-5 py-3 px-6 rounded-md bg-white'>
 			<div className='flex items-end pb-1'>
 				<svg 
-					className='h-10 w-10 border rounded-full'
+					onClick={handleClick}
+					className='cursor-pointer h-10 w-10 border rounded-full'
 					xmlns="http://www.w3.org/2000/svg" 
 					viewBox="0 0 24 24"
 				>

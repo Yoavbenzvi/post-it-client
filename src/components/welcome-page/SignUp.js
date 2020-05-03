@@ -116,7 +116,7 @@ const validate = (formValues) => {
 	}
 
 	if(!formValues.password) {
-		errors.password = 'Passwordis required'
+		errors.password = 'Password is required'
 	}
 
 	if(!formValues.name) {

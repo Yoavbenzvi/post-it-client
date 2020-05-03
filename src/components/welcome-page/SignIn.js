@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
-import { signIn } from '../../actions';
-import baseURL from '../../api'
+import { signIn, toggleModalOn } from '../../actions';
+import baseURL from '../../api';
 
 const style = "mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
 const error = 'shadow appearance-none border border-red-500 bg-red-100 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline';
@@ -49,7 +49,7 @@ const renderPasswordField = ({ input, meta }) => {
 	)
 }
 
-const SignIn = ({ handleSubmit, signIn }) => {
+const SignIn = ({ handleSubmit, signIn, toggleModalOn }) => {
 
 
 	const submitSignInForm = (formValues) => {
@@ -57,7 +57,7 @@ const SignIn = ({ handleSubmit, signIn }) => {
 			.then(response => {
 				signIn(response.data)
 			})
-			.catch(err => console.log('Login Problem:', err)) //CHANGE TO MODAL POPUP
+			.catch(err => toggleModalOn(true)) 
 	}
 
 	return(
@@ -82,7 +82,8 @@ const SignIn = ({ handleSubmit, signIn }) => {
 }
 
 const mapDispatchToProps = {
-	signIn
+	signIn,
+	toggleModalOn
 }
 
 const validate = (formValues) => {

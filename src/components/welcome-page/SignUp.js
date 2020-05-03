@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
-import { signIn } from '../../actions';
+import { signIn, toggleModalOn } from '../../actions';
 import baseURL from '../../api'
 
 const style = "mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
@@ -70,14 +70,14 @@ const renderUserNameField = ({ input, meta }) => {
 
 
 
-const SignUp = ({ handleSubmit, signIn }) => {
+const SignUp = ({ handleSubmit, signIn, toggleModalOn }) => {
 
 	const submitSignUpForm  = (formValues) => {
 		baseURL.post('/register', {...formValues, email: formValues.email.toLowerCase()})
 			.then(response => {
 				signIn(response.data)
 			})
-			.catch(err => console.log('Register Problem:', err)) //CHANGE TO MODAL POPUP
+			.catch(err => toggleModalOn(true)) //CHANGE TO MODAL POPUP
 	}
 
 	return(
@@ -105,7 +105,8 @@ const SignUp = ({ handleSubmit, signIn }) => {
 }
 
 const mapDispatchToProps = {
-	signIn
+	signIn,
+	toggleModalOn
 }
 
 const validate = (formValues) => {

@@ -6,6 +6,8 @@ import {
 	SIGN_OUT,
 	SET_VIEWED_USER,
 	SET_FEED,
+	TOGGLE_MODAL_ON,
+	TOGGLE_MODAL_OFF,
 } from './constants';
 
 export const signIn = (payload) => (dispatch) => {
@@ -56,6 +58,14 @@ export const deletePost = (postId) => async (dispatch) => {
 
 export const setFeed = (payload) => ({
 	type: SET_FEED, payload
+})
+
+export const toggleModalOff = () => ({
+	type: TOGGLE_MODAL_OFF
+})
+
+export const toggleModalOn = (payload) => ({
+	type: TOGGLE_MODAL_ON, payload
 })
 
 

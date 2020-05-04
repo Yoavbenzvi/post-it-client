@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const NavIcon = ({ content, path, onClick = null }) => {
-
 	return(
 		<Link 
 			onClick={onClick} 

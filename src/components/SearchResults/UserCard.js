@@ -28,6 +28,6 @@ const UserCard = ({ id, email, name }) => {
 
 const mapDispatchToProps = {
 
-}
+};
 
 export default connect(null, mapDispatchToProps)(UserCard);

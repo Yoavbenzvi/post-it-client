@@ -44,7 +44,7 @@ const Post = ({ toggleModalOn, getAllPosts, setViewedUser, deletePost, currentUs
 							:
 							setViewedUser(location.substring(14))
 					})
-					.catch(/*add modal here*/)
+					.catch(err => toggleModalOn())
 			:
 				baseURL.patch('/add-like', {
 					id,
@@ -56,7 +56,7 @@ const Post = ({ toggleModalOn, getAllPosts, setViewedUser, deletePost, currentUs
 							:
 							setViewedUser(location.substring(14))
 					})
-					.catch(toggleModalOn())
+					.catch(err => toggleModalOn())
 		}
 	}
 
@@ -113,18 +113,18 @@ const Post = ({ toggleModalOn, getAllPosts, setViewedUser, deletePost, currentUs
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 const mapStateToProps = (state) => ({
 	currentUser: state.currentUserReducer.data
-})
+});
 
 const mapDispatchToProps = {
 	setViewedUser,
 	deletePost,
 	getAllPosts,
 	toggleModalOn
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

@@ -13,7 +13,7 @@ class Profile extends React.Component{
 	componentDidMount() {
 		const id = (history.location.pathname.substring(14))
 		this.props.setViewedUser(id)
-	}
+	};
 
 	render() {
 	const { viewedUser } = this.props;
@@ -30,17 +30,17 @@ class Profile extends React.Component{
 					<Feed/>
 				</div>
 			</React.Fragment>
-		)
-	}
-}
+		);
+	};
+};
 
 const mapStateToProps = (state) => ({
 	viewedUser: state.viewedUserReducer.viewedUser,
 	modal: state.modalReducer.modal
-})
+});
 
 const mapDispatchToProps = {
 	setViewedUser
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

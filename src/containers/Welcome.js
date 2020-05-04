@@ -9,7 +9,7 @@ import Modal from '../components/Modal/Modal';
 const Welcome = ({ modal }) => {
 	return(
 		<div className='md:bg-blue-400 md:w-full md:h-full lg:h-screen lg:flex lg:justify-center lg:items-center'>
-			{modal ? <Modal /> : null}
+			{modal ? <Modal body='Please try again or check internet connection'/> : null}
 			<div className='max-h-screen flex flex-col lg:flex-row lg:w-4/5 lg:shadow-2xl'>
 				<div className='w-full lg:w-4/12 bg-cus-4 flex justify-center shadow-md lg:shadow-cos1 z-10'>
 					<WelcomeText />
@@ -22,11 +22,11 @@ const Welcome = ({ modal }) => {
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 const mapStateToProps = (state) => ({
 	modal: state.modalReducer.modal
-})
+});
 
 export default connect(mapStateToProps)(Welcome);

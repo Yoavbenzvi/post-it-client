@@ -34,8 +34,8 @@ class Search extends React.Component {
 			</div>
 			</div>
 			</div>
-		)
-	}
+		);
+	};
 
 	onSearchSubmit = ({ searchTerm }) => {
 		baseURL.get(`search-user/${searchTerm}`)	
@@ -48,7 +48,7 @@ class Search extends React.Component {
 				this.props.reset()
 			})
 			.catch(toggleModalOn())
-	}
+	};
 
 	render() {	
 		return(
@@ -67,18 +67,18 @@ class Search extends React.Component {
 					</div>
 				</div>
 			</React.Fragment>
-		)
-	}
-}
+		);
+	};
+};
 
 const mapStateToProps = (state) => ({
 	modal: state.modalReducer.modal
-})
+});
 
 const mapDispatchToProps = {
 	reset,
 	toggleModalOn
-}
+};
 
 const WrappedSearch = reduxForm({
 	form: 'searchUsers'

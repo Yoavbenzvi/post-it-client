@@ -39,10 +39,9 @@ class Home extends React.Component {
 
 	componentDidMount() {
 		this.props.getAllPosts()
-	}
+	};
 
-	publishPost = (formValues) => {
-		
+	publishPost = (formValues) => {		
 		baseURL.post('/add-post', {
 			email: this.props.currentUser.email,
 			name: this.props.currentUser.name,
@@ -53,7 +52,7 @@ class Home extends React.Component {
 				this.props.setFeed(response.data)
 			})
 			.catch(err => this.props.toggleModalOn())
-	}
+	};
 
 	render() {
 		return(
@@ -72,19 +71,19 @@ class Home extends React.Component {
 			</React.Fragment>
 		)
 	}
-}
+};
 
 const mapStateToProps = (state) => ({
 	currentUser: state.currentUserReducer.data,
 	modal: state.modalReducer.modal
-})
+});
 
 const mapDispatchToProps = {
 	reset,
 	setFeed,
 	getAllPosts,
 	toggleModalOn,
-}
+};
 
 const validate = (formValues) => {
 	const errors = {};
@@ -92,9 +91,9 @@ const validate = (formValues) => {
 	if(!formValues.content) {
 		errors.content = '*No empty posts allowed'
 	}
-
+	
 	return errors;
-}
+};
 
 const WrappedHome = reduxForm({
 	form: 'writePost',

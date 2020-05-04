@@ -22,12 +22,11 @@ class Feed extends React.Component {
 			</div>
 		)
 	}
-	
 }
 
 const mapStateToProps = (state) => ({
 	viewedUser: state.viewedUserReducer.viewedUser,
 	feed: state.feedReducer.feed
-})
+});
 
 export default connect(mapStateToProps)(Feed);

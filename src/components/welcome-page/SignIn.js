@@ -13,15 +13,15 @@ const renderEmailField = ({ input, meta }) => {
 
 	return(
 		<div className="mb-4">
-			<label className="block text-gray-700 text-sm font-bold mb-2">
+			<label className="block text-gray-700 text-sm font-bold">
 				Email
-			</label>
 			<input 
 				{...input}
 				className={(meta.touched && meta.error) ? error : style}
 				type="email" 
 				placeholder="Enter username"
 			/>
+			</label>
 			<div className='text-xs text-red-500'>
 				{(meta.touched && meta.error) ? meta.error : null}
 			</div>
@@ -33,15 +33,15 @@ const renderPasswordField = ({ input, meta }) => {
 
 	return(
 		<div className="mb-8">
-			<label className="block text-gray-700 text-sm font-bold mb-2">
+			<label className="block text-gray-700 text-sm font-bold">
 				Password
-			</label>
 			<input 
 				{...input}
 				className={(meta.touched && meta.error) ? error : style}
 				type="password" 
 				placeholder="Enter Password"
 			/>
+			</label>
 			<div className='text-xs text-red-500'>
 				{(meta.touched && meta.error) ? meta.error : null}
 			</div>
@@ -72,7 +72,7 @@ const SignIn = ({ handleSubmit, signIn, toggleModalOn }) => {
 					<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 lg:py-2 px-2 lg:px-4 rounded focus:outline-none focus:shadow-outline">
 						Sign In
 					</button>
-					<Link to='/register' className="inline-block align-baseline font-bold text-xs lg:text-sm text-blue-500 hover:text-blue-800" href="#">
+					<Link to='/register' title='Sign-in-link' className="inline-block align-baseline font-bold text-xs lg:text-sm text-blue-600 hover:text-blue-800" href="#">
 						Register First
 					</Link>
 				</div>

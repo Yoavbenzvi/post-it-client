@@ -23,6 +23,7 @@ class Search extends React.Component {
 				      className="shadow-md focus:border-blue-300 border-2 border-gray-300 bg-white h-10 px-5 rounded-lg text-sm focus:outline-none"
 				      type="text" 
 				      placeholder="Search" 
+				      autocomplete='off'
 				   />
 				</div>
 				   <button 
@@ -43,12 +44,22 @@ class Search extends React.Component {
 				response.data.length > 0 ? 
 				this.setState({ results: response.data}) 
 				:
-				this.setState({results: []}); // <== CHANGE
+				this.setState({results: null});
 				;
 				this.props.reset()
 			})
 			.catch(toggleModalOn())
 	};
+
+	renderSearchResults = () => {
+		return !this.state.results ?
+			<div class="mt-8 bg-blue-100 border-4 rounded-md border-blue-500 text-blue-700 px-4 py-3" role="alert">
+			  <p class="font-bold">Sorry, no results</p>
+			  <p class="text-sm">Try a different search term</p>
+			</div>
+		:
+			<SearchResults results={this.state.results}/>
+	}
 
 	render() {	
 		return(
@@ -62,7 +73,7 @@ class Search extends React.Component {
 							</form>
 						</div>
 						<div className='flex justify-center'>
-							<SearchResults results={this.state.results}/>
+							{this.renderSearchResults()}
 						</div>
 					</div>
 				</div>

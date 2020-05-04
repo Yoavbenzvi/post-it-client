@@ -11,9 +11,8 @@ const error = 'shadow appearance-none border border-red-500 bg-red-100 rounded w
 const renderEmailField = ({ input, meta }) => {
 	return(
 		<div className="mb-4">
-			<label className="block text-gray-700 text-sm font-bold mb-2">
+			<label className="block text-gray-700 text-sm font-bold">
 				Enter your Email
-			</label>
 			<input 
 				{...input}
 				className={(meta.touched && meta.error) ? error : style}
@@ -21,6 +20,7 @@ const renderEmailField = ({ input, meta }) => {
 				placeholder="Username"
 				autoComplete='off'
 			/>
+			</label>
 			<div className='text-xs text-red-500'>
 				{(meta.touched && meta.error) ? meta.error : null}
 			</div>
@@ -31,9 +31,8 @@ const renderEmailField = ({ input, meta }) => {
 const renderPasswordField = ({ input, meta }) => {
 	return(
 		<div className="mb-6">
-			<label className="block text-gray-700 text-sm font-bold mb-2">
+			<label className="block text-gray-700 text-sm font-bold">
 				Pick a Password
-			</label>
 			<input 
 				{...input}
 				className={(meta.touched && meta.error) ? error : style}
@@ -41,6 +40,7 @@ const renderPasswordField = ({ input, meta }) => {
 				placeholder="Enter password"
 				autoComplete='off'
 			/>
+			</label>
 			<div className='text-xs text-red-500'>
 				{(meta.touched && meta.error) ? meta.error : null}
 			</div>
@@ -51,9 +51,8 @@ const renderPasswordField = ({ input, meta }) => {
 const renderUserNameField = ({ input, meta }) => {
 	return(
 		<div className="mb-4">
-			<label className="block text-gray-700 text-sm font-bold mb-2">
+			<label className="block text-gray-700 text-sm font-bold">
 				Pick a Username
-			</label>
 			<input 
 				{...input}
 				className={(meta.touched && meta.error) ? error : style}
@@ -61,6 +60,7 @@ const renderUserNameField = ({ input, meta }) => {
 				placeholder="Enter username"
 				autoComplete='off'
 			/>
+			</label>
 			<div className='text-xs text-red-500'>
 				{(meta.touched && meta.error) ? meta.error : null}
 			</div>
@@ -95,7 +95,7 @@ const SignUp = ({ handleSubmit, signIn, toggleModalOn }) => {
 					>
 						Register
 					</button>
-					<Link to='/' className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+					<Link to='/' title='Sign-in-link' className="inline-block align-baseline font-bold text-sm text-blue-600 hover:text-blue-800">
 						Sign In
 					</Link>
 				</div>

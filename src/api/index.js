@@ -1,5 +1,9 @@
 import axios from 'axios';
 
 export default axios.create({
-	baseURL: 'http://localhost:3001'
+	baseURL: 'https://post-it-app-backend.herokuapp.com/'
 });
+
+//https://git.heroku.com/post-it-app-backend.git
+//https://post-it-app-backend.herokuapp.com
+//https://addons-sso.heroku.com/robots.txt

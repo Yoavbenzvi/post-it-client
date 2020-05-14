@@ -1,16 +1,16 @@
-import { SET_FEED, SIGN_OUT } from '../actions/constants';
+import { SET_FEED, SIGN_OUT } from "../actions/constants";
 
 const initialState = {
-	feed: []
-}
+	feed: [],
+};
 
 export default (state = initialState, { type, payload }) => {
-	switch(type) {
+	switch (type) {
 		case SET_FEED:
-			return {...state, feed: payload};
+			return { ...state, feed: payload };
 		case SIGN_OUT:
-			return {...state, feed: []}
-		default: 
+			return { ...state, feed: [] };
+		default:
 			return state;
 	}
-}
+};
